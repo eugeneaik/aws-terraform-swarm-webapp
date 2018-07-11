@@ -11,7 +11,7 @@ pipeline {
 
        stage('Keys') {
             steps {
-		 sh 'cd docker && yes n | ssh-keygen -b 2048 -t rsa -N "" i -C server-key -f sshkey.pem'
+		 sh 'cd docker && yes n | ssh-keygen -b 2048 -t rsa -N "" -C server-key -f sshkey.pem'
             }
 	}
 
