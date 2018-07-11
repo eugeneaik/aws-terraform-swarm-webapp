@@ -28,7 +28,7 @@ pipeline {
         stage('Apply') {
             steps {
                 sh """
-                   cd docker && terraform apply tfplan -var-file=\"~/terraform.tfvars\"
+                   cd docker && terraform apply tfplan 
                    """
             }
         }
