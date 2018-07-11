@@ -1,11 +1,14 @@
 pipeline {
     agent any
 
-    node {
-    	 checkout scm 
-	 }
-
     stages {
+
+	stage('Checkout') {
+            steps {
+              checkout scm
+            }
+        }
+
        stage('Keys') {
             steps {
                 sh """
