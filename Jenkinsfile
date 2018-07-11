@@ -12,14 +12,16 @@ pipeline {
        stage('Keys') {
             steps {
                 sh """
-                   yes | ssh-keygen -b 2048 -t rsa -N '' -C server-key -f sshkey.pem
+                   cd docker && echo -e 'n\n' | ssh-keygen -b 2048 -t rsa -N '' -C server-key -f sshkey.pem
                    """
             }
 	}
 
-        stage('Build') {
+        stage('Init') {
             steps {
-                echo 'Building..'
+                sh """
+		   terraform init -input=false
+		   """
             }
         }
 
