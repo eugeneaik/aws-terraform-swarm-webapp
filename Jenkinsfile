@@ -20,7 +20,7 @@ pipeline {
         stage('Init') {
             steps {
                 sh """
-		   terraform init -input=false
+		   cd docker && terraform init -input=false
 		   """
             }
         }
