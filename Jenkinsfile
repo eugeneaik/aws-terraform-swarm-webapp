@@ -6,25 +6,26 @@ pipeline {
 	 }
 
     stages {
-        stage('Keys') {
+       stage('Keys') {
             steps {
-		sh """ 
+                sh """
                    yes | ssh-keygen -b 2048 -t rsa -N '' -C server-key -f sshkey.pem
-		   """
+                   """
             }
-        }
+	}
 
-    stages {
         stage('Build') {
             steps {
                 echo 'Building..'
             }
         }
+
         stage('Test') {
             steps {
                 echo 'Testing..'
             }
         }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
