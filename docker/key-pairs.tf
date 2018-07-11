@@ -1,6 +1,6 @@
 #resource "null_resource" "create-key" {
 #  provisioner "local-exec" {
-#    command = "yes | ssh-keygen -b 2048 -t rsa -N '' -C server-key -f ${var.key_name}"
+#    command = "yes n | ssh-keygen -b 2048 -t rsa -N '' -C server-key -f ${var.key_name}"
 #  }
 #}
 
