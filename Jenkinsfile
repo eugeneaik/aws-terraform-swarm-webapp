@@ -9,15 +9,6 @@ pipeline {
             }
         }
 
-/*       stage('Keys') {
-            steps {
-		 sh '/bin/bash -c \\"yes n | ssh-keygen -b 2048 -t rsa -N \\\"\\\" -C server-key -f sshkey.pem\\"'
-		 sh 'cd docker'
-		 sh 'yes n | ssh-keygen -b 2048 -t rsa -N "" -C server-key -f sshkey.pem'
-            }
-	}
-*/
-
         stage('Init') {
             steps {
                 sh """
@@ -31,13 +22,14 @@ pipeline {
 		sh """
                    cd docker && terraform plan -out=tfplan -var-file=\"~/terraform.tfvars\" 
                    """
-
             }
         }
 
-        stage('Deploy') {
+        stage('Apply') {
             steps {
-                echo 'Deploying....'
+                sh """
+                   cd docker && terraform apply tfplan -var-file=\"~/terraform.tfvars\"
+                   """
             }
         }
     }
