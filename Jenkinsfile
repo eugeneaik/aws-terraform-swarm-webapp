@@ -11,11 +11,7 @@ pipeline {
 
        stage('Keys') {
             steps {
-		 sh 'echo -e \'n\\n\' | ssh-keygen -b 2048 -t rsa -N \'\' -C server-key -f sshkey.pem'
-
-//                sh """
-//                   cd docker && echo -e \'n\\n\' | ssh-keygen -b 2048 -t rsa -N \'\' -C server-key -f sshkey.pem
-//                   """
+		 sh 'cd docker && echo -e \'n\\n\' | ssh-keygen -b 2048 -t rsa -N \'\' -C server-key -f sshkey.pem'
             }
 	}
 
@@ -27,9 +23,12 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Plan') {
             steps {
-                echo 'Testing..'
+		sh """
+                   cd docker && terraform plan -out=tfplan -input=false
+                   """
+
             }
         }
 
