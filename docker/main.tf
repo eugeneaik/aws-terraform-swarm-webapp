@@ -81,7 +81,6 @@ resource "aws_instance" "worker" {
       "sudo chmod 400 ~/.ssh/${var.key_name}",
       "sudo scp -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -i ~/.ssh/${var.key_name} ubuntu@${aws_instance.master.private_ip}:/home/ubuntu/swarm_token.txt .",
       "sudo docker swarm join --token $(cat /home/ubuntu/swarm_token.txt) ${aws_instance.master.private_ip}:2377",
-      "sudo docker service create --name registry --publish published=5000,target=5000 registry:2",
     ]
   }
 }

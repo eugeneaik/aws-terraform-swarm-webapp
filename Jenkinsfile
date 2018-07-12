@@ -14,7 +14,7 @@ environment {
             }
         }
 
-        stage('Terrarom Init') {
+        stage('Terraform Init') {
             steps {
                 sh """
 		   cd docker && terraform init 
