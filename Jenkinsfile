@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 environment {
-	SCP_MASTER = 'scp -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -i ~/.ssh/sshkey.pem'
+	SCP_MASTER = 'scp -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -i ~/.ssh/sshkey.pem webapp/* ubuntu@$(cat docker/ip_master.txt):/webapp'
 	SSH_MASTER = 'ssh ubuntu@$(cat docker/ip_master.txt) -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -i ~/.ssh/sshkey.pem'
     }
 
