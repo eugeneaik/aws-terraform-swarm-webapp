@@ -7,7 +7,7 @@ provider "aws" {
 resource "aws_instance" "master" {
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "t2.micro"
-  key_name               = "${aws_key_pair.ssh_key.key_name}"
+  key_name               = "${var.key_name}"
   vpc_security_group_ids = ["${aws_security_group.sg-swarm.id}"]
 
   tags {
@@ -18,7 +18,7 @@ resource "aws_instance" "master" {
   connection {
     user        = "ubuntu"
     type        = "ssh"
-    private_key = "${file(var.key_name)}"
+    private_key = "~/.ssh/${file(var.key_name)}"
     timeout     = "2m"
   }
 
@@ -44,7 +44,7 @@ resource "aws_instance" "worker" {
   depends_on             = ["aws_instance.master"]
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "t2.micro"
-  key_name               = "${aws_key_pair.ssh_key.key_name}"
+  key_name               = "${var.key_name}"
   vpc_security_group_ids = ["${aws_security_group.sg-swarm.id}"]
 
   tags {
@@ -55,7 +55,7 @@ resource "aws_instance" "worker" {
   connection {
     user        = "ubuntu"
     type        = "ssh"
-    private_key = "${file(var.key_name)}"
+    private_key = "~/.ssh/${file(var.key_name)}"
     timeout     = "2m"
   }
 
