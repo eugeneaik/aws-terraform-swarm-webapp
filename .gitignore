@@ -3,3 +3,8 @@
 *.pem
 *.pem.*
 *.tfvars
+*.tfvars.*
+*.tfplan
+.terraform/
+**/.terraform/*
+ssh_*.sh
