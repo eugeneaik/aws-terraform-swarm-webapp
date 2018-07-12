@@ -13,7 +13,7 @@ environment {
             }
         }
 
-/*        stage('Init') {
+/*        stage('Terrarom Init') {
             steps {
                 sh """
 		   cd docker && terraform init 
@@ -21,7 +21,7 @@ environment {
             }
         }
 
-        stage('Plan') {
+        stage('Terraform Plan') {
             steps {
 		sh """
                    cd docker && terraform plan -out=docker.tfplan -var-file=\"~/terraform.tfvars\" 
@@ -29,7 +29,7 @@ environment {
             }
         }
 
-        stage('Apply') {
+        stage('Terraform Apply') {
             steps {
                 sh """
                    cd docker && terraform apply docker.tfplan 
@@ -38,10 +38,10 @@ environment {
         }
 */
 
-	stage('test') {
+	stage('Check Docker Registry') {
             steps {
                 sh  """
-                    ${SSH_MASTER} "docker node ls"
+                    ${SSH_MASTER} "curl http://localhost:5000/v2/"
                     """
             }
         }
