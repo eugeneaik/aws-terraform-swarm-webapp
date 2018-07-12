@@ -58,10 +58,34 @@ environment {
             }
         }
 
-        stage('Image build') {
+        stage('Compose Build') {
             steps {
                 sh  """
                     ${SSH_MASTER} "cd webapp && docker-compose build"
+                    """
+            }
+        }
+
+        stage('Compose Push') {
+            steps {
+                sh  """
+                    ${SSH_MASTER} "cd webapp && docker-compose push"
+                    """
+            }
+        }
+
+        stage('Stack Deploy') {
+            steps {
+                sh  """
+                    ${SSH_MASTER} "cd webapp && docker stack deploy --compose-file docker-compose.yml stackwebapp"
+                    """
+            }
+        }
+
+        stage('Check App') {
+            steps {
+                sh  """
+                    ${SSH_MASTER} "curl http://localhost"
                     """
             }
         }
