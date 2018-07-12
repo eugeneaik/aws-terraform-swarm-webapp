@@ -2,6 +2,7 @@ pipeline {
     agent any
 
 environment {
+	SCP_MASTER = 'scp -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -i ~/.ssh/sshkey.pem'
 	SSH_MASTER = 'ssh ubuntu@$(cat docker/ip_master.txt) -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -i ~/.ssh/sshkey.pem'
     }
 
@@ -45,6 +46,16 @@ environment {
                     """
             }
         }
+
+        stage('Copy App to Docker') {
+            steps {
+                sh  """
+                    ${SSH_MASTER} "mkdir webapp"
+		    ${SCP_MASTER} webapp/* ubuntu@$(cat docker/ip_master.txt):/webapp
+                    """
+            }
+        }
+
 
     }
 }
