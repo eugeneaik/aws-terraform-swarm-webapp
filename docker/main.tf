@@ -27,7 +27,7 @@ resource "aws_instance" "master" {
   }
 
   provisioner "file" {
-    source      = "${var.key_name}"
+    source      = "~/.ssh/${var.key_name}"
     destination = "~/.ssh/${var.key_name}"
   }
 
@@ -64,7 +64,7 @@ resource "aws_instance" "worker" {
   }
 
   provisioner "file" {
-    source      = "${var.key_name}"
+    source      = "~/.ssh/${var.key_name}"
     destination = "~/.ssh/${var.key_name}"
   }
 
