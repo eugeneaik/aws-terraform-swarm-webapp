@@ -85,6 +85,7 @@ environment {
         stage('Check App') {
             steps {
                 sh  """
+		    sleep 10
                     ${SSH_MASTER} "curl http://localhost"
                     """
             }
