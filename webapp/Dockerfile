@@ -1,9 +1,5 @@
-FROM gliderlabs/alpine:latest
-
-ADD . /webapp
-WORKDIR /webapp
-RUN apk-install python \
-	python-dev \
-	py-pip &&\
-	pip install -r requirements.txt
-CMD ["python", "webapp.py"]
+FROM python:3.4-alpine
+ADD . /code
+WORKDIR /code
+RUN pip install -r requirements.txt
+CMD ["python", "app.py"]

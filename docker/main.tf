@@ -23,7 +23,11 @@ resource "aws_instance" "master" {
   }
 
   provisioner "local-exec" {
-    command = "echo '#!/bin/bash\nssh ubuntu@${aws_instance.master.public_ip}' > ssh_master.sh '-i ${var.key_name}' && chmod +x ssh_master.sh"
+    command = "echo '#!/bin/bash\nssh ubuntu@${aws_instance.master.public_ip}' > ssh_master.sh '-i ~/.ssh/${var.key_name}' && chmod +x ssh_master.sh"
+  }
+
+  provisioner "local-exec" {
+    command = "echo ${aws_instance.master.public_ip} > ip_master.txt"
   }
 
   provisioner "file" {
@@ -60,7 +64,7 @@ resource "aws_instance" "worker" {
   }
 
   provisioner "local-exec" {
-    command = "echo '#!/bin/bash\nssh ubuntu@${aws_instance.worker.public_ip}' > ssh_worker.sh '-i ${var.key_name}' && chmod +x ssh_worker.sh"
+    command = "echo '#!/bin/bash\nssh ubuntu@${aws_instance.worker.public_ip}' > ssh_worker.sh '-i ~/.ssh/${var.key_name}' && chmod +x ssh_worker.sh"
   }
 
   provisioner "file" {
@@ -77,6 +81,7 @@ resource "aws_instance" "worker" {
       "sudo chmod 400 ~/.ssh/${var.key_name}",
       "sudo scp -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -i ~/.ssh/${var.key_name} ubuntu@${aws_instance.master.private_ip}:/home/ubuntu/swarm_token.txt .",
       "sudo docker swarm join --token $(cat /home/ubuntu/swarm_token.txt) ${aws_instance.master.private_ip}:2377",
+      "sudo docker service create --name registry --publish published=5000,target=5000 registry:2",
     ]
   }
 }
