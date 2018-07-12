@@ -8,6 +8,10 @@ sudo apt-get --yes install docker-ce
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
 sudo systemctl start docker
+
+sudo curl -L https://github.com/docker/compose/releases/download/1.22.0-rc2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
 sudo docker swarm init
 sudo docker swarm join-token --quiet worker > /home/ubuntu/swarm_token.txt
 sudo docker service create --name registry --publish published=5000,target=5000 registry:2
