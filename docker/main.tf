@@ -18,7 +18,7 @@ resource "aws_instance" "master" {
   connection {
     user        = "ubuntu"
     type        = "ssh"
-    private_key = "${file(~/.ssh/var.key_name)}"
+    private_key = "${file("~/.ssh/${var.key_name}")}"
     timeout     = "2m"
   }
 
@@ -55,7 +55,7 @@ resource "aws_instance" "worker" {
   connection {
     user        = "ubuntu"
     type        = "ssh"
-    private_key = "${file(~/.ssh/var.key_name)}"
+    private_key = "${file("~/.ssh/${var.key_name}")}"
     timeout     = "2m"
   }
 
