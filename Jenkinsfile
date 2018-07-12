@@ -50,7 +50,7 @@ environment {
         stage('Copy App to Docker') {
             steps {
                 sh  """
-                    ${SSH_MASTER} "mkdir webapp"
+                    ${SSH_MASTER} "mkdir -p webapp"
 		    """
 		sh  """
 		    ${SCP_MASTER}
