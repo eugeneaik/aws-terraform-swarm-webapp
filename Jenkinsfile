@@ -58,6 +58,14 @@ environment {
             }
         }
 
-// ${SCP_MASTER} webapp\/* ubuntu\@$(cat docker\/ip_master.txt):\/webapp
+        stage('Image build') {
+            steps {
+                sh  """
+                    ${SSH_MASTER} "cd webapp && docker-compose build"
+                    """
+            }
+        }
+
+
     }
 }
