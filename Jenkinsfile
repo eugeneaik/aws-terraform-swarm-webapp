@@ -53,12 +53,11 @@ environment {
                     ${SSH_MASTER} "mkdir webapp"
 		    """
 		sh  """
-//		    ${SCP_MASTER} webapp\/* ubuntu\@$(cat docker\/ip_master.txt):\/webapp
 		    ${SCP_MASTER}
                     """
             }
         }
 
-
+// ${SCP_MASTER} webapp\/* ubuntu\@$(cat docker\/ip_master.txt):\/webapp
     }
 }
