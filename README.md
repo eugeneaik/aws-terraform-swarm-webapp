@@ -1,1 +1,3 @@
 Swarm is ready!
+Simply webapp "Hello world!" over Swarm is up!
+Docker API in progress...
