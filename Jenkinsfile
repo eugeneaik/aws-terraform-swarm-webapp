@@ -2,9 +2,8 @@ pipeline {
     agent any
 
 environment {
-    ssh_var = '-o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -i ~/.ssh/sshkey.pem'
+	SSH_MASTER = 'ssh ubuntu@$(cat docker/ip_master.txt) -o StrictHostKeyChecking=no -o NoHostAuthenticationForLocalhost=yes -o UserKnownHostsFile=/dev/null -i ~/.ssh/sshkey.pem'
     }
-
 
     stages {
 
@@ -42,7 +41,7 @@ environment {
 	stage('test') {
             steps {
                 sh  """
-                    ssh ubuntu@(cat ip_master.txt) ${ssh_var} "docker node ls"
+                    ${SSH_MASTER} "docker node ls"
                     """
             }
         }
