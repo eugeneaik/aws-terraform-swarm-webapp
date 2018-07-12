@@ -14,7 +14,7 @@ environment {
             }
         }
 
-/*        stage('Terrarom Init') {
+        stage('Terrarom Init') {
             steps {
                 sh """
 		   cd docker && terraform init 
@@ -37,7 +37,6 @@ environment {
                    """
             }
         }
-*/
 
 	stage('Check Docker Registry') {
             steps {
