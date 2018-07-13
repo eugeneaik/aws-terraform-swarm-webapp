@@ -1,7 +1,8 @@
 #!/bin/bash
 sudo apt-get update -y
 
-udo apt-get --yes curl
+sudo apt-get --yes curl
+sudo apt-get --yes httpie
 
 echo === Install Terraform ===
 sudo apt-get --yes install unzip
