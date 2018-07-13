@@ -32,9 +32,7 @@ environment {
 
         stage('Terraform Apply') {
             steps {
-                sh """
-                   cd docker && terraform apply docker.tfplan 
-                   """
+                sh 'cd docker && terraform apply docker.tfplan' 
             }
         }
 
