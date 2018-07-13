@@ -84,7 +84,7 @@ environment {
                     ${SSH_MASTER} "curl http://localhost"
                     """
 */
-		sh '"/usr/bin/http http://$(cat docker/ip_master.txt)"'
+		sh 'http http://$(cat docker/ip_master.txt)'
 	    }		
         }
 
