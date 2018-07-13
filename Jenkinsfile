@@ -79,12 +79,15 @@ environment {
 
         stage('Check App') {
             steps {
-               sh ''' 
-		    #!/bin/bash
+               sh """ 
 		    sleep 10
                     ${SSH_MASTER} "curl http://localhost"
-                    http http://$(cat docker/ip_master.txt) 
-		  ''' 
+		  """ 
+               sh '''
+                    #!/bin/bash
+                    http http://$(cat docker/ip_master.txt)
+                  '''
+
 	    }		
         }
 
