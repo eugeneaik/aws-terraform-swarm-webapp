@@ -83,12 +83,7 @@ environment {
 		    sleep 10
                     ${SSH_MASTER} "curl http://localhost"
 		  """ 
-               sh '''
-                    #!/bin/bash
-                    /usr/bin/http $(cat docker/ip_master.txt)
-                  '''
-
-	    }		
+	    	}		
         }
 
     }
