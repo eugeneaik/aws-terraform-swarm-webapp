@@ -85,7 +85,7 @@ environment {
 		  """ 
                sh '''
                     #!/bin/bash
-                    http http://$(cat docker/ip_master.txt)
+                    /usr/bin/http $(cat docker/ip_master.txt)
                   '''
 
 	    }		
