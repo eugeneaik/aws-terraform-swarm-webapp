@@ -6,7 +6,7 @@ container_dict = {}
 
 app = Flask(__name__)
 
-def get_ontainers(): 
+def get_containers(): 
     for container in client.containers.list():
 	container_dict[container.id] =container.attrs['Config']['Image']
 
@@ -14,7 +14,7 @@ def get_ontainers():
 def mainpage():
     version = (mydocker.version()).get('Version')
     get_containers()
-    return render_template('index.html',version=version, mydict=mydict)
+    return render_template('index.html',version=version, mydict=container_dict)
 
 @app.route('/info')
 def dockerinfo():
