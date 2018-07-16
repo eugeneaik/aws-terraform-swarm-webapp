@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 def get_containers(): 
     for container in client.containers.list():
-        container_dict[container.id] =container.attrs['Config']['Image']
+        container_dict[container.id] = container.attrs['Config']['Image']
 
 @app.route('/')
 def mainpage():
