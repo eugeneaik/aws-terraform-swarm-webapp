@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect, render_template
 import docker
 from pprint import pprint
 
@@ -8,8 +8,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def mainpage():
-    result= "Hello Docker Version: " + (mydocker.version()).get('Version')
-    return result
+    version = (mydocker.version()).get('Version')
+    return render_template('index.html',version=version)
 
 @app.route('/info')
 def dockerinfo():
