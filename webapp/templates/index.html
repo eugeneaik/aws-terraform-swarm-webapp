@@ -4,13 +4,13 @@
       <h1>Hello Docker Version: {{version}}</h1>
       <table border = 1>
             <tr>
-               <th> Container ID </th><td> Image </td>
+               <td> Container ID </td><td> Image </td>
             </tr>
 
          {% for key, value in mydict.items() %}
          
             <tr>
-               <th> {{ key }} </th>
+               <td> {{ key }} </td>
                <td> {{ value }} </td>
             </tr>
             
