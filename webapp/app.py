@@ -12,7 +12,8 @@ def hello():
 
 @app.route('/info')
 def dockerinfo():
-    return pprint(mydocker.version())
+    v=(mydocker.version()).get('Version')
+    return v
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
