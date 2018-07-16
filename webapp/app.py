@@ -7,8 +7,9 @@ mydocker = docker.from_env()
 app = Flask(__name__)
 
 @app.route('/')
-def hello():
-    return "Hello Docker"
+def mainpage():
+    v=(mydocker.version()).get('Version')
+    return "Hello Docker version %v", v
 
 @app.route('/info')
 def dockerinfo():
