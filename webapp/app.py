@@ -12,7 +12,7 @@ def hello():
 
 @app.route('/info')
 def dockerinfo():
-    return "mydocker.info()"
+    return mydocker.info()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
