@@ -9,14 +9,11 @@ app = Flask(__name__)
 def get_containers(): 
     for container in client.containers.list():
         container_dict[container.id] = container.attrs['Config']['Image']
-        print (container.id)
-        print (container.attrs['Config']['Image'])
 
 @app.route('/')
 def mainpage():
     version = (client.version()).get('Version')
     get_containers()
-    container_dict['test'] = 'test'
     return render_template('index.html',version=version, mydict=container_dict)
 
 @app.route('/info')
