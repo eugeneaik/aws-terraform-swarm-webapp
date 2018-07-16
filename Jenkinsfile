@@ -45,7 +45,7 @@ environment {
         stage('Copy App to Docker') {
             steps {
                 sh  """
-                    ${SSH_MASTER} "mkdir -p webapp"
+                    ${SSH_MASTER} "mkdir -p webapp/templates"
 		    """
 		sh  """
 		    ${SCP_MASTER}
