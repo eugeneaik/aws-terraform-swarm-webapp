@@ -16,3 +16,6 @@ sudo docker swarm init
 sudo docker swarm join-token --quiet worker > /home/ubuntu/swarm_token.txt
 sudo docker service create --name registry --publish published=5000,target=5000 registry:2
 
+sudo apt --yes install python3-pip
+sudo pip3 install docker
+
