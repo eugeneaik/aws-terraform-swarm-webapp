@@ -1,15 +1,19 @@
 from flask import Flask, redirect, render_template
 import docker
-from pprint import pprint
 
 mydocker = docker.from_env()
+container_dict = {}
 
 app = Flask(__name__)
 
+def get_ontainers(): 
+    for container in client.containers.list():
+	container_dict[container.id] =container.attrs['Config']['Image']
+
 @app.route('/')
 def mainpage():
-    mydict = {'phy':50,'che':60,'maths':70}
     version = (mydocker.version()).get('Version')
+    get_containers()
     return render_template('index.html',version=version, mydict=mydict)
 
 @app.route('/info')
