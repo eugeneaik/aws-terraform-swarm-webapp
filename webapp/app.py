@@ -8,8 +8,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def mainpage():
+    mydict = {'phy':50,'che':60,'maths':70}
     version = (mydocker.version()).get('Version')
-    return render_template('index.html',version=version)
+    return render_template('index.html',version=version, mydict=mydict)
 
 @app.route('/info')
 def dockerinfo():

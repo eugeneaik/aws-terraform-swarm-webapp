@@ -1,1 +1,17 @@
-<h1>Hello Docker Version: {{version}}</h1>
+<!doctype html>
+<html>
+   <body>
+      <h1>Hello Docker Version: {{version}}</h1>
+      <table border = 1>
+         {% for key, value in mydict.iteritems() %}
+         
+            <tr>
+               <th> {{ key }} </th>
+               <td> {{ value }} </td>
+            </tr>
+            
+         {% endfor %}
+      </table>
+      
+   </body>
+</html>
