@@ -1,9 +1,6 @@
 #!/bin/bash
 sudo apt-get update -y
 
-sudo apt-get --yes curl
-sudo apt-get --yes httpie
-
 echo === Install Terraform ===
 sudo apt-get --yes install unzip
 wget https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip
