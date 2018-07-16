@@ -14,8 +14,7 @@ def get_containers():
 def mainpage():
     version = (client.version()).get('Version')
     get_containers()
-    container_dict = {'ab724b9715eb99afed3c0a893557eb13e57ca8575e746951233a6a4a452e8d4c': 'busybox', '92434e11e415a6ec197348b841541b1e38cbc6ec9112e15e1456791e884cddbe': 'registry:2@sha256:51bb55f23ef7e25ac9b8313b139a8dd45baa832943c8ad8f7da2ddad6355b3c8'}
-
+    container_dict['test'] = 'test'
     return render_template('index.html',version=version, mydict=container_dict)
 
 @app.route('/info')
