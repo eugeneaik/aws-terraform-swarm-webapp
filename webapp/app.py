@@ -8,8 +8,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def mainpage():
-    v=(mydocker.version()).get('Version')
-    return 'Hello Docker version %v' % v
+    result= "Hello Docker Version: " + (mydocker.version()).get('Version')
+    return result
 
 @app.route('/info')
 def dockerinfo():
