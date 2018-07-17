@@ -23,7 +23,7 @@ def get_logs(id):
 def mainpage():
     version = (client.version()).get('Version')
     get_containers()
-#    get_services()
+    get_services()
     return render_template('index.html',version=version, dcontainer=container_dict, dservice=service_dict)
 
 @app.route('/container/<string:id>')
