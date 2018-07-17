@@ -21,9 +21,10 @@ def get_logs(id):
 @app.route('/')
 def mainpage():
     version = (client.version()).get('Version')
+    apiver = (client.version()).get('ApiVersion')
     get_containers()
 #    get_services()
-    return render_template('index.html',version=version, dcontainer=container_dict, dservice=service_dict)
+    return render_template('index.html',version=version, api=apiver, dcontainer=container_dict, dservice=service_dict)
 
 @app.route('/container/<string:id>')
 def containerinfo(id):
