@@ -10,7 +10,7 @@
          {% for id, name  in dcontainer.items() %}
          
             <tr>
-               <td> {{ id }} </td>
+               <td><a href = "container/{{ id }}"> {{ id }} </a></td>
                <td> {{ name }} </td>
             </tr>
             
@@ -23,7 +23,7 @@
          {% for id, name  in dservice.items() %}
 
             <tr>
-               <td> {{ id }} </td>
+               <td><a href = "service/{{ id }}"> {{ id }} </a></td>
                <td> {{ name }} </td>
             </tr>
 
