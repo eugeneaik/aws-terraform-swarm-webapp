@@ -23,7 +23,7 @@ def mainpage():
     version = (client.version()).get('Version')
     apiver = (client.version()).get('ApiVersion')
     get_containers()
-#    get_services()
+    get_services()
     return render_template('index.html',version=version, api=apiver, dcontainer=container_dict, dservice=service_dict)
 
 @app.route('/container/<string:id>')
