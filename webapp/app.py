@@ -8,12 +8,12 @@ service_dict = {}
 app = Flask(__name__)
 
 def get_containers(): 
-    for container in client.containers.list():
-        container_dict[container.id] = container.attrs['Config']['Image']
+    for i_container in client.containers.list():
+        container_dict[i_container.id] = i_container.attrs['Config']['Image']
 
 def get_services():
-    for service in service.containers.list():
-        service_dict[service.id] = "noname"
+    for i_service in client.services.list():
+        service_dict[i_service.id] = "noname"
 
 @app.route('/')
 def mainpage():
