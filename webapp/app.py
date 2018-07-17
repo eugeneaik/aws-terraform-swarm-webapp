@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template
 import docker
 
-client = docker.DockerClient(base_url='unix://var/run/docker.sock', version='1.30') 
+client = docker.DockerClient(base_url='unix://var/run/docker.sock', version='1.24') 
 container_dict = {}
 service_dict = {}
 
