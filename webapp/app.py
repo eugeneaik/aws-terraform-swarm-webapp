@@ -3,6 +3,7 @@ import docker
 
 client = docker.from_env()
 container_dict = {}
+service_dict = {}
 
 app = Flask(__name__)
 
@@ -10,11 +11,16 @@ def get_containers():
     for container in client.containers.list():
         container_dict[container.id] = container.attrs['Config']['Image']
 
+def get_services():
+    for service in service.containers.list():
+        container_dict[container.id] = container.attrs['Config']['Image']
+
 @app.route('/')
 def mainpage():
     version = (client.version()).get('Version')
     get_containers()
-    return render_template('index.html',version=version, mydict=container_dict)
+    get_services()
+    return render_template('index.html',version=version, container=container_dict, service=service_dict)
 
 @app.route('/info')
 def dockerinfo():

@@ -7,15 +7,29 @@
                <td> Container ID </td><td> Image </td>
             </tr>
 
-         {% for key, value in mydict.items() %}
+         {% for id, name  in container.items() %}
          
             <tr>
-               <td> {{ key }} </td>
-               <td> {{ value }} </td>
+               <td> {{ id }} </td>
+               <td> {{ name }} </td>
             </tr>
             
          {% endfor %}
+
+            <tr>
+               <td> Service ID </td><td> Image </td>
+            </tr>
+
+         {% for id, name  in service.items() %}
+
+            <tr>
+               <td> {{ id }} </td>
+               <td> {{ name }} </td>
+            </tr>
+
+         {% endfor %}
+
       </table>
-      
+
    </body>
 </html>
