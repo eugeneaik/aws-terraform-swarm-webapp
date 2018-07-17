@@ -2,18 +2,18 @@
 <html>
    <body>
       <h1>Hello Docker Version: {{version}}</h1>
-      <table border = 1>
+      <table border = 0>
             <tr>
                <td> Container ID </td><td> Image </td>
             </tr>
 
          {% for id, name  in dcontainer.items() %}
-         
+
             <tr>
-               <td> {{ id }}   </td>
+               <td><a href="container/{{ id  }}"> {{ id }}  </a> </td>
                <td> {{ name }} </td>
             </tr>
-            
+
          {% endfor %}
 
             <tr>

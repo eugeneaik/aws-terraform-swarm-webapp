@@ -7,20 +7,30 @@ service_dict = {}
 
 app = Flask(__name__)
 
-def get_containers(): 
+def get_containers():
     for i_container in client.containers.list():
         container_dict[i_container.id] = i_container.attrs['Config']['Image']
 
 def get_services():
     for i_service in client.services.list():
-        service_dict[i_service.id] = i_service.attrs['Spec']['TaskTemplate']['ContainerSpec']['Image'] 
+        service_dict[i_service.id] = "noname"
+        #i_service.attrs['Spec']['TaskTemplate']['ContainerSpec']['Image']
+def get_logs(id):
+    container = client.containers.get(id)
+    return container.logs()
 
 @app.route('/')
 def mainpage():
     version = (client.version()).get('Version')
     get_containers()
-    get_services()
+#    get_services()
     return render_template('index.html',version=version, dcontainer=container_dict, dservice=service_dict)
+
+@app.route('/container/<string:id>')
+def containerinfo(id):
+    logs = get_logs(id)
+    logs = logs.decode('utf-8').splitlines()
+    return render_template('logs.html',id=id, logs=logs)
 
 @app.route('/info')
 def dockerinfo():
