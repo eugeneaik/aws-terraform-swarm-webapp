@@ -13,14 +13,14 @@ def get_containers():
 
 def get_services():
     for service in service.containers.list():
-        container_dict[container.id] = container.attrs['Config']['Image']
+        service_dict[service.id] = "noname"
 
 @app.route('/')
 def mainpage():
     version = (client.version()).get('Version')
     get_containers()
     get_services()
-    return render_template('index.html',version=version, container=container_dict, service=service_dict)
+    return render_template('index.html',version=version, dcontainer=container_dict, dservice=service_dict)
 
 @app.route('/info')
 def dockerinfo():
