@@ -13,8 +13,7 @@ def get_containers():
 
 def get_services():
     for i_service in client.services.list():
-        service_dict[i_service.id] = "noname"
-        #i_service.attrs['Spec']['TaskTemplate']['ContainerSpec']['Image']
+        service_dict[i_service.id] = i_service.attrs['Spec']['TaskTemplate']['ContainerSpec']['Image']
 def get_logs(id):
     container = client.containers.get(id)
     return container.logs()
@@ -23,7 +22,7 @@ def get_logs(id):
 def mainpage():
     version = (client.version()).get('Version')
     get_containers()
-    get_services()
+#    get_services()
     return render_template('index.html',version=version, dcontainer=container_dict, dservice=service_dict)
 
 @app.route('/container/<string:id>')
