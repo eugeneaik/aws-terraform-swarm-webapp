@@ -13,7 +13,7 @@ def get_containers():
 
 def get_services():
     for i_service in client.services.list():
-        service_dict[i_service.id] = "noname"
+        service_dict[i_service.id] = i_service.attrs['Spec']['TaskTemplate']['ContainerSpec']['Image'] 
 
 @app.route('/')
 def mainpage():
