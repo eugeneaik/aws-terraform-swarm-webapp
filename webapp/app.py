@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template
 import docker
 
-client = docker.DockerClient(base_url='unix://var/run/docker.sock', version='auto') 
+client = docker.DockerClient(base_url='unix://var/run/docker.sock', version='1.30') 
 container_dict = {}
 service_dict = {}
 
@@ -34,7 +34,7 @@ def containerinfo(id):
 
 @app.route('/info')
 def dockerinfo():
-    v=(client.version()).get('Version')
+    v=(client.version()).get('ApiVersion')
     return v
 
 if __name__ == "__main__":
